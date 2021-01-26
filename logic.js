@@ -1,16 +1,32 @@
 window.addEventListener("load", initsite)
-document.getElementById("submitBtn").addEventListener("click", submitOrder)
+/* document.getElementById("submitBtn").addEventListener("click", submitOrder) */
 
 
 function initsite() {
+    seeProductsOnPage()
 }
 
-async function submitOrder() {
+
+    /**/
+   /*  async function getProducts() {
+    console.log("test GET")
+    const products = document.getElementById("seeproduct")
+
+    const viewProduct = await request("./server/productReciever.php", "GET")
+    console.log(viewProduct)
+    products.innerText = viewProduct
+
+} */
+
+
+async function seeProductsOnPage() {
     const productInput = document.getElementById("seeProduct")
-    const viewProduct = await request("./server/productReciever.php", "POST")
+    const viewProduct = await request("./server/productReciever.php", "GET")
     console.log(viewProduct)
     productInput.innerText = viewProduct
 }
+
+
 
 async function request(path, method, body) {
     try {
