@@ -1,6 +1,47 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+}
+
 header {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 60px;
 }
+
+/* submit-knappen, id från index */
+#submitBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    
+}
+
+/* mamma-diven, id från index */
+#seeProduct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+/* hämtat från JS classlist*/
+.productContainer {
+    background-color: wheat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5px;
+}
+
+/* knappen lägg till i varukorg, hämtat från JS classlist */
+.cartButton {
+  background-color: violet;
+}
+
+
