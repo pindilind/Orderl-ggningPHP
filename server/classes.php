@@ -2,14 +2,16 @@
 
 /* productlista (class) */
 class Product {
-    function __construct($name, $price, $weight) {
-
+    function __construct($id, $name, $price, $weight) {
+        
+        $this->id = $id;
         $this->name = $name;
         $this ->price = $price;
         $this ->weight = $weight;
     }
 
     /* metod */
+    public $id;
     public $name;
     public $price;
     public $weight;

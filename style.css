@@ -8,6 +8,7 @@ header {
     justify-content: center;
     align-items: center;
     font-size: 60px;
+    background-color: #212121;
 }
 
 /* submit-knappen, id från index */
@@ -31,17 +32,27 @@ header {
 
 /* hämtat från JS classlist*/
 .productContainer {
-    background-color: wheat;
+    background-color:#FFFFFF;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin: 5px;
+    width: 200px;
+    border: 1px solid black;
 }
 
 /* knappen lägg till i varukorg, hämtat från JS classlist */
 .cartButton {
-  background-color: violet;
+    display: flex;
+    background-color: #5596F5;
+    color: #FFFFFF;
+    border-radius: 8px;
+    border: none;
+    width: 150px;
+    height: 6vh;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
 }
-
-

@@ -4,6 +4,7 @@ document.getElementById("submitBtn").addEventListener("click", submitOrder)
 
 function initsite() {
     seeProductsOnPage()
+   
 }
 
 /* function för knappen "submit" */
@@ -39,11 +40,38 @@ async function seeProductsOnPage() {
 
         cartButton.onclick = function() {
             console.log(this.data)
-            let addToCart = document.getElementById("varukorg")
-            addToCart.data = this.data
-        
+            addToCart()
         }
 
+        function addToCart() {
+        
+        
+            let productToAdd = this.data
+            let cart = JSON.parse(localStorage.getItem("cart"))
+
+        if(!cart) {
+            cart = []
+        } else {
+            cart = JSON.parse(cart)
+        }
+
+       let foundIndex =  cart.findIndex((cartItem) => {
+            return cartItem.products.id == productToAdd.id
+        }) 
+        console.log(foundIndex)
+
+        if(foundIndex != -1) {
+            cart[foundIndex].quantity++
+        } else {
+            cart.push({
+                product: productToAdd,
+                quantity: 1
+            })
+        }
+
+    
+
+    }
        
         //Appendar till sidan
         productContainer.append(nameText, priceText, weightText, cartButton)
@@ -82,13 +110,4 @@ async function request(path, method, body) {
 
 
  /* formatet för 1 produkt i carten */
-       /*  const cart = [
-            {
-                product: {
-                    name:"",
-                    price: "",
-                    weight: ""
-                }, quantity: 2
-            }
-        ] */
-        
+       

@@ -21,7 +21,7 @@ try {
             //kollar om det finns sparat på body
             if(isset($_POST["name"],$_POST["price"],$_POST["weight"]))  {
                 
-                $myOrder = new Product($_POST["name"],$_POST["price"],$_POST["weight"]);
+                /* $myOrder = new Product($_POST["name"],$_POST["price"],$_POST["weight"]); */
 
                 if(empty($myOrder)) {
                     throw new Exception("Horoscope could not be calculated");
