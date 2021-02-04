@@ -1,5 +1,4 @@
 window.addEventListener("load", initsite)
-document.getElementById("submitBtn").addEventListener("click", submitOrder)
 
 
 function initsite() {
@@ -7,14 +6,11 @@ function initsite() {
 
 }
 
-// function för knappen "submit"
-async function submitOrder() {
-    console.log("Hejhej")
-}
+
 
 // function för att skriva ut produkter på sidan
 async function seeProductsOnPage() {
-    const productInput = document.getElementById("seeProduct")
+    const seeProduct = document.getElementById("seeProduct")
     const productList = await request("./server/productReciever.php", "GET")
     console.log(productList)
 
@@ -46,7 +42,7 @@ async function seeProductsOnPage() {
         productContainer.append(nameText, priceText, weightText, cartButton)
         cartButton.appendChild(buttonText)
 
-        productInput.appendChild(productContainer)
+        seeProduct.appendChild(productContainer)
 
         //Classlists för styling
         productContainer.classList = "productContainer"

@@ -19,16 +19,6 @@ a {
     
 }
 
-/* submit-knappen, id från index */
-#submitBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    color: black;
-    
-}
-
 /* mamma-diven, id från index */
 #seeProduct {
     display: flex;
@@ -51,7 +41,7 @@ a {
 }
 
 /* knappen lägg till i varukorg, hämtat från JS classlist */
-.cartButton {
+.deleteBtn {
     display: flex;
     background-color: #5596F5;
     color: #FFFFFF;

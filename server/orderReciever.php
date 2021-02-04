@@ -1,18 +1,20 @@
 <?php
 require("./classes.php");
 
-
 try {
     //För att använda $_SESSION
     session_start();
 
-    //Kollar om en request har gjorts
+    //kollar om requesten är gjord
     if(isset($_SERVER["REQUEST_METHOD"])) {
 
-        if($_SERVER["REQUEST_METHOD"] === "POST") {
-            //REQUEST_METHOD är POST
+        if($_SERVER["REQUEST_METHOD"] === "GET") {
 
-            if(isset($_SESSION["products"])) {
+        } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+HÄR ÄR JAG ! 
+        } 
+
+           /*  if(isset($_SESSION["products"])) {
 
                 echo json_encode(false);
                 exit;
@@ -21,7 +23,7 @@ try {
             //kollar om det finns sparat på body
             if(isset($_POST["name"],$_POST["price"],$_POST["weight"]))  {
                 
-                /* $myOrder = new Product($_POST["name"],$_POST["price"],$_POST["weight"]); */
+               
 
                 if(empty($myOrder)) {
                     throw new Exception("Horoscope could not be calculated");
@@ -53,6 +55,6 @@ try {
         )
     );
     exit;
-}
+} */
 
 ?>
