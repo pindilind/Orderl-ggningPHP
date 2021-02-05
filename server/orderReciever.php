@@ -1,5 +1,5 @@
 <?php
-require("./classes.php");
+require("./productHelper.php");
 
 try {
     //För att använda $_SESSION
@@ -8,11 +8,55 @@ try {
     //kollar om requesten är gjord
     if(isset($_SERVER["REQUEST_METHOD"])) {
 
+        //hämtar ordrar
         if($_SERVER["REQUEST_METHOD"] === "GET") {
+          
+            if(!isset($_SESSION["orders"])) {
+                echo json_encode(false);
+                exit;
 
+            } 
+        echo json_encode(unserialize($_SESSION["orders"]));
+
+        //lägga till ny order
         } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-HÄR ÄR JAG ! 
+
+            $allProducts = getAllProducts();
+
+           $cartItems = JSON_decode($_POST["cartItem"]);
+
+           //forech etirerar bland produkterna och lägger till
+           $orderItem = [];
+        
+        $foundProduct = null;
+        foreach($cartItems as $cartItem) {
+
+            foreach($allProducts as $product) {
+                if($product->id == $cartItem->product) {
+                   $foundProduct = $product;
+                   break; 
+                } 
+            }
+            //skapat order
+        array_push($orderItem, new OrderItem($foundProduct, $cartItem->quantity));
+    
+        }
+
+        $order = new Order($orderItem);
+
+        //kollar om ORDER finns sparat och pushar
+        $savedOrders = [];
+        if(isset($_SESSION["orders"])) {
+            $savedOrders = unserialize($_SESSION["orders"]);
+        }
+        array_push($savedOrders, $order);
+
+        //sparar order
+        $_SESSION["orders"] = serialize($savedOrders);
+
+            echo JSON_encode(true);
         } 
+    }
 
            /*  if(isset($_SESSION["products"])) {
 
@@ -45,7 +89,7 @@ HÄR ÄR JAG !
             throw new Exception("Not a valid request...", 405);
         }
 
-    } 
+    } */
     
 } catch (Exception $error) {
     echo json_encode(
@@ -55,6 +99,4 @@ HÄR ÄR JAG !
         )
     );
     exit;
-} */
-
-?>
+}

@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 60px;
+    background-color: #212121;
+    height: 50px;
+}
+
+a {
+    font-size: 20px;
+    color: white;
+    margin: 10px;
+    
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+table, th td {
+    background-color: #5596F5;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 20px;
+
+}
+
+table {
+    width: 100%;
+    margin: 10px;
+}

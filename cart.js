@@ -7,34 +7,6 @@ function initsite() {
     renderCart()
 
 }
-//skapar en order-knapp
-let orderBtn = document.createElement("button")
-let orderBtnText = document.createElement("h3")
-orderBtnText.innerText = "Lägg order"
-seeProduct.appendChild(orderBtn)
-orderBtn.appendChild(orderBtnText)
-
-orderBtn.onclick = function () {
-    placeOrder()
-}
-
-async function placeOrder() {
-
-    const cart = JSON.parse(localStorage.getItem("cart"))
-    const formattedCart = cart.map((cartItem) => {
-        return {
-            product: cartItem.product.id,
-            quantity: cartItem.quantity
-        }
-    })
-    console.log(formattedCart)
-    const body = new FormData()
-    body.append("")
-
-    const superStatus = await request("./server/orderReciever-php", "POST", body)
-
-}
-
 
 async function renderCart() {
     const seeProduct = document.getElementById("seeProduct")
@@ -74,7 +46,6 @@ async function renderCart() {
         }
 
 
-
         //Appendar till sidan
         productContainer.append(quantityText, nameText, priceText, weightText, deleteBtn)
         deleteBtn.appendChild(buttonText)
@@ -84,23 +55,54 @@ async function renderCart() {
         //Classlists för styling
         productContainer.classList = "productContainer"
         deleteBtn.classList = "deleteBtn"
+        orderBtn.classList = "orderBtn"
 
     })
 
 
-    //request funktion 
-    async function request(path, method, body) {
-        try {
-            const response = await fetch(path, {
-                method,
-                body
-            })
-            console.log(response)
-            return response.json()
-        } catch (err) {
-            console.error(err)
-        }
+        //skapar en order-knapp
+    let orderBtn = document.createElement("button")
+    let orderBtnText = document.createElement("h3")
+    orderBtnText.innerText = "Lägg order"
+    seeProduct.appendChild(orderBtn)
+    orderBtn.appendChild(orderBtnText)
+
+    orderBtn.onclick = function () {
+        placeOrder()
     }
+}
 
 
+async function placeOrder() {
+
+    const cart = JSON.parse(localStorage.getItem("cart"))
+    const formattedCart = cart.map((cartItem) => {
+        return {
+            product: cartItem.product.id,
+            quantity: cartItem.quantity
+        }
+    })
+
+    const body = new FormData()
+    body.append("cartItem", JSON.stringify(formattedCart))
+
+    const succeStatus = await request("./server/orderReciever.php", "POST", body)
+    console.log(succeStatus)
+}
+
+
+
+
+//request funktion 
+async function request(path, method, body) {
+    try {
+        const response = await fetch(path, {
+            method,
+            body
+        })
+        console.log(response)
+        return response.json()
+    } catch (err) {
+        console.error(err)
+    }
 }

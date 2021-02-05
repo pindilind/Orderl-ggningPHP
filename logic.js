@@ -1,7 +1,7 @@
 window.addEventListener("load", initsite)
 
 
-function initsite() {
+async function initsite() {
     seeProductsOnPage()
 
 }

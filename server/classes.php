@@ -17,19 +17,35 @@ class Product {
     public $weight;
 }
 
-class Order {
-    function __construct($orderDate, $product, $quantity, $totalPrice) {
-        $this->orderDate = $orderDate;
+class OrderItem {
+    function __construct($product, $quantity) {
         $this->product = $product;
         $this->quantity = $quantity;
-        $this->totalPrice = $totalPrice;
     }
-
-    public $orderDate;
     public $product;
     public $quantity;
-    public $totalPrice;
 
+
+    }
+
+
+class Order {
+    function __construct($orderItem) {
+        $this->orderItem = $orderItem;
+    }
+
+    public $orderItem;
+
+  
 }
 
+/* function calculatePrice() {
+        $totalprice = [];
+        foreach($this->product as $product) {
+            array_push($totalprice, $product->price);
+        }
+    return array_sum($totalprice) . "kr";
+    }
+ */
 ?>
+
