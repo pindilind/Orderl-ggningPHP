@@ -55,8 +55,7 @@ async function renderCart() {
         //Classlists för styling
         productContainer.classList = "productContainer"
         deleteBtn.classList = "deleteBtn"
-        orderBtn.classList = "orderBtn"
-
+    
     })
 
 
@@ -66,6 +65,7 @@ async function renderCart() {
     orderBtnText.innerText = "Lägg order"
     seeProduct.appendChild(orderBtn)
     orderBtn.appendChild(orderBtnText)
+    orderBtn.classList = "orderBtn"
 
     orderBtn.onclick = function () {
         placeOrder()
