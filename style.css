@@ -64,3 +64,7 @@ a {
     padding: 10px;
     margin: 10px;
 }
+
+.cartCounter {
+    font-size: 10;
+}

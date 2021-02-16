@@ -15,10 +15,10 @@ async function seeProductsOnPage() {
     console.log(productList)
 
 
-
     // Nytt sätt att skriva en for-loop på (skriver ut på sidan)
-    productList.forEach((product) => {
-        let productContainer = document.createElement("div")
+   productList.forEach((product) => {
+
+       let productContainer = document.createElement("div")
 
         let nameText = document.createElement("h3")
         nameText.innerText = product.name
@@ -33,9 +33,10 @@ async function seeProductsOnPage() {
         let buttonText = document.createElement("h3")
         buttonText.innerText = "Lägg till i kundvagnen"
         cartButton.data = product
-
+ 
         //knapp för att lägga till i localstorage
         cartButton.addEventListener("click", addToCart) 
+        cartButton.addEventListener("click", updateNumberToCart)
 
 
         //Appendar till sidan
@@ -47,9 +48,33 @@ async function seeProductsOnPage() {
         //Classlists för styling
         productContainer.classList = "productContainer"
         cartButton.classList = "cartButton"
+    }) 
 
-    })
+    updateNumberToCart()
+    function updateNumberToCart() {
+        let item = localStorage.getItem("cart")
+        let numberOfItems = 0
 
+        if(item !== null) {
+            let cart = JSON.parse(item)
+        
+            cart.forEach((product) => {
+                numberOfItems += product.quantity
+                
+            })
+        }
+
+        document.getElementById("cartCounter").innerText = numberOfItems
+    }
+
+     /*  function updateNumberToCart() {
+
+        let productList = JSON.parse(localStorage.getItem("userList"))
+        for (let i = 0; i < productList.length; i++) {
+        const cart = productList[i].cart  
+        document.getElementById("purchase").innerText = cart.length
+    } */
+   
     //funktion för att lägga till i localstorage
     function addToCart() {
 
@@ -82,6 +107,10 @@ async function seeProductsOnPage() {
     
     }
 
+
+    
+
+  
 
     /* Foreachloop  */
     /* productList.forEach((product) => {
